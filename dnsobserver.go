@@ -54,7 +54,9 @@ func handleInteraction(w dns.ResponseWriter, r *dns.Msg) {
 
 		message := "*Received DNS interaction:*" + "\n\n" + dateString + "\n" + fromString + "\n" + nameString + "\n" + typeString
 		if conf.SlackWebhook != "" {
-			sendSlack(message)
+			if !strings.EqualFold("ns1."+conf.Domain+".", q1.Name){
+				sendSlack(message)
+			}
 		} else {
 			fmt.Println(message)
 		}
