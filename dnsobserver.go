@@ -120,7 +120,7 @@ func main() {
 	}
 
 	dns.HandleFunc(".", handleInteraction)
-	if err := dns.ListenAndServe(conf.PublicIP+":53", "udp", nil); err != nil {
+	if err := dns.ListenAndServe("0.0.0.0:53", "udp", nil); err != nil {
 		fmt.Println(err.Error())
 		return
 	}
